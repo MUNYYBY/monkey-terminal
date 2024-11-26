@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Jersey_15_Charted } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 
 const Jersey_15_Charted_Font = Jersey_15_Charted({
   subsets: ["latin"],
@@ -43,15 +44,26 @@ export default function Home() {
               </h2>
             </div>
             <div className="flex flex-col gap-8">
-              <button className="bg-primary text-black w-32 text-xl py-2 rounded-lg">
-                DEXTOOLS
-              </button>
-              <button className="bg-primary text-black w-32 text-xl py-2 rounded-lg">
-                TELEGRAM
-              </button>
-              <button className="bg-primary text-black w-32 text-xl py-2 rounded-lg">
-                TWITTER
-              </button>
+              <Link
+                href={
+                  "https://dexscreener.com/solana/5fev8jhdrgqebzfox4m4bl2qmjxjcheywsseplu68pu6"
+                }
+                target="_blank"
+              >
+                <button className="bg-primary text-black w-32 text-xl py-2 rounded-lg">
+                  DEXTOOLS
+                </button>
+              </Link>
+              <Link href={"https://t.me/monkeyaipf"} target="_blank">
+                <button className="bg-primary text-black w-32 text-xl py-2 rounded-lg">
+                  TELEGRAM
+                </button>
+              </Link>
+              <Link href={"https://x.com/MonkeyAIPF"} target="_blank">
+                <button className="bg-primary text-black w-32 text-xl py-2 rounded-lg">
+                  TWITTER
+                </button>
+              </Link>
             </div>
           </div>
         </div>
