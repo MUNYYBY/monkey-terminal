@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Jersey_15 } from "next/font/google";
+import RootWrapper from "@/hoc/RootWrapper";
 
 const Jersey_15_Font = Jersey_15({
   subsets: ["latin"],
@@ -26,7 +27,7 @@ export default function RootLayout({
         className={Jersey_15_Font.className}
         suppressHydrationWarning={true}
       >
-        {children}
+        <RootWrapper>{children}</RootWrapper>
       </body>
     </html>
   );

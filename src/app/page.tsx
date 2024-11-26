@@ -1,3 +1,4 @@
+import LandingWelcomeButton from "@/components/LandingWelcomeButton/LandingWelcomeButton";
 import clsx from "clsx";
 import { Jersey_15_Charted } from "next/font/google";
 import Image from "next/image";
@@ -16,14 +17,18 @@ export default function Home() {
       <div className="mt-10">
         <div className="container">
           <div className="flex flex-col justify-center items-center gap-10">
-            <p
-              className={clsx(
-                Jersey_15_Charted_Font.className,
-                "text-5xl md:text-7xl"
-              )}
-            >
-              $MONKEYAI
-            </p>
+            <div className="w-full relative">
+              <p
+                className={clsx(
+                  Jersey_15_Charted_Font.className,
+                  "text-5xl md:text-7xl text-center flex-grow"
+                )}
+              >
+                $MONKEYAI
+              </p>
+              <LandingWelcomeButton />
+            </div>
+
             <Image
               src="/monkey-terminal.gif"
               height={500}
