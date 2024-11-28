@@ -1,4 +1,3 @@
-import Logo from "../Logo/Logo";
 import Spinner from "./Spinner";
 
 const FallbackSpinner = () => {
@@ -13,9 +12,6 @@ const FallbackSpinner = () => {
       }}
     >
       <Spinner size={"lg"} />
-      <div className="mt-4">
-        <Logo />
-      </div>
     </div>
   );
 };
