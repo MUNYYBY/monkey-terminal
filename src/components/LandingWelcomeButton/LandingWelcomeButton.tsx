@@ -15,7 +15,11 @@ const InterFont = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export default function LandingWelcomeButton() {
+export default function LandingWelcomeButton({
+  isNormalButton,
+}: {
+  isNormalButton: boolean;
+}) {
   //** states */
   const [open, setOpen] = useState(false);
   const [isCreateAccount, setIsCreateAccount] = useState(false);
@@ -56,16 +60,16 @@ export default function LandingWelcomeButton() {
           </div>
         </div>
       </Dialog>
-      <div className={clsx("absolute right-0 top-5")}>
+      <div className={clsx(!isNormalButton && "absolute right-0 top-5")}>
         {!auth.user ? (
           <button
-            className="bg-primary text-black w-32 text-xl py-2 rounded-lg"
+            className="w-32 rounded-lg bg-primary py-2 text-xl text-black"
             onClick={() => setOpen(true)}
           >
             Login
           </button>
         ) : (
-          <div className="bg-primary text-black w-32 text-lg py-2 rounded-lg flex justify-center items-center">
+          <div className="flex w-32 items-center justify-center rounded-lg bg-primary py-2 text-lg text-black">
             {auth?.user?.name}
           </div>
         )}
