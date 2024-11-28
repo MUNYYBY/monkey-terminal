@@ -39,12 +39,18 @@ export type AuthValuesType = {
   setLoading: (value: boolean) => void;
   setUser: (value: UserDataType | null) => void;
   setSettings: (value: any) => void;
-  login: (params: LoginParams, errorCallback?: any, setLoading?: any) => void;
+  login: (
+    params: LoginParams,
+    errorCallback?: any,
+    setLoading?: any,
+    afterLogin?: any
+  ) => void;
   register: (
     params: RegisterParams,
     errorCallback?: any,
     setLoading?: any,
     setSuccess?: any,
+    afterLogin?: any
   ) => void;
   initAuth: () => void;
   RefreshInformation: (data: any) => void;

@@ -73,7 +73,8 @@ const AuthProvider = ({ children }: Props) => {
   function parseLoginResponse(
     response: any,
     onlyInfromation: boolean,
-    team?: boolean
+    team?: boolean,
+    afterLogin?: any
   ) {
     const res = team
       ? { ...response.data.team, name: response.data.team.firstName }
@@ -109,13 +110,17 @@ const AuthProvider = ({ children }: Props) => {
     setLoading(false);
     initAuth();
 
-    // Get return URL from query parameters
-    const searchParams = new URLSearchParams(window.location.search);
-    const returnUrl = searchParams.get("returnUrl");
+    if (afterLogin) {
+      afterLogin();
+    } else {
+      // Get return URL from query parameters
+      const searchParams = new URLSearchParams(window.location.search);
+      const returnUrl = searchParams.get("returnUrl");
 
-    // Navigate to the return URL if it exists, otherwise navigate to /app/
-    if (!onlyInfromation) {
-      router.replace(returnUrl ? decodeURIComponent(returnUrl) : "/app/");
+      // Navigate to the return URL if it exists, otherwise navigate to /app/
+      if (!onlyInfromation) {
+        router.replace(returnUrl ? decodeURIComponent(returnUrl) : "/app/");
+      }
     }
   }
 
@@ -128,7 +133,8 @@ const AuthProvider = ({ children }: Props) => {
   const handleLogin = (
     params: LoginParams,
     errorCallback: any,
-    setLoading?: any
+    setLoading?: any,
+    afterLogin?: any
   ) => {
     axios
       .post(authConfig.loginEndpoint, {
@@ -136,9 +142,10 @@ const AuthProvider = ({ children }: Props) => {
         password: params.password,
       })
       .then((response: any) => {
-        parseLoginResponse(response, false);
+        parseLoginResponse(response, false, false, afterLogin);
       })
       .catch((err) => {
+        console.log(err);
         setLoading(false);
         if (errorCallback) errorCallback(err.response.data.message);
       });
@@ -172,7 +179,8 @@ const AuthProvider = ({ children }: Props) => {
   const handleRegister = (
     params: RegisterParams,
     errorCallback: any,
-    setLoading: any
+    setLoading: any,
+    afterLogin?: any
   ) => {
     axios
       .post(authConfig.registerEndpoint, {
@@ -182,7 +190,7 @@ const AuthProvider = ({ children }: Props) => {
         phone: params.phone,
       })
       .then((res: any) => {
-        parseLoginResponse(res, false);
+        parseLoginResponse(res, false, false, afterLogin);
       })
       .catch((err: any) => {
         setLoading(false);
